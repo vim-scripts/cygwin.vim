@@ -1,13 +1,13 @@
 " Vim compiler file
-" Compiler:	any compiler run from make -- for win32-vim & Cygwin
+" Compiler:	any compiler run from make -- for win32-Vim & Cygwin
 " Maintainer:	Luc Hermitte <EMAIL:hermitte {at} free {dot} fr>
 " URL: http://hermitte.free.fr/vim/ressources/vimfiles/compiler/cygwin.vim
-" Last Change:	31st mar 2003
+" Last Change:	13th Feb 2004
 "
-" Note: This file is usefull with gcc and other programs run from make, when
+" Note: This file is useful with gcc and other programs run from make, when
 " these tools come from Cygwin and the version of Vim used is the win32 native
 " version.
-" In other environements, Vim default settings are perfect.
+" In other environments, Vim default settings are perfect.
 "
 " Reason: the filenames (for whom gcc reports errors) are expressed in the
 " UNIX form, and Vim is unable to open them from the quickfix window. Hence
@@ -43,8 +43,11 @@ endif
 let s:root = matchstr(system('cygpath -m /'), "^.*\\ze\n") . '/'
 "
 " b- filter to apply over `make' outputs: '/' --> {root}
-let &l:makeprg = "make $* 2>&1 \\| sed 'sK/.*:[0-9]*:K".s:root."&Kg'"
+let &l:makeprg = "make $* 2>&1 \\| sed 'sK^ */.*:[0-9]*:K".s:root."&Kg'"
 
 " c- default value for 'efm'
 " setlocal efm&
 
+" Changelog
+" 13th Feb 2004:
+"   Do not try to convert non absolute pathes

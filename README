@@ -1,0 +1,12 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=722
+
+This file is useful with gcc and other programs run from make, when these tools come from Cygwin and the version of Vim used is the win32 native version.
+In other environments, Vim default settings are perfect.
+
+Reason: the filenames (for whom gcc reports errors) are expressed in the UNIX form, and Vim is unable to open them from the quickfix window. Hence the filtering used to replace '/' (root) by {cygpath -m /}.
+Since the version 20040616, this plugin is also able to follow symbolic links -- defined from cygwin.
+
+At this time, it has only be tested with gcc, but I guess it should be useful with other compilers built for cygwin.
+
+
+Improvments are certainly posible. Any feedback is welcomed!
